@@ -1,9 +1,6 @@
 \documentclass[Main.tex]{subfiles}
-
 \begin{document}
-
 \section{Introduction}
-
 Over the past two decades the field of swarm intelligence has evolved from intertwined branches of mathematics, physics, biology, traditional robotics, and artificial intelligence; attempting to apply observations of physical and biological systems to artificial ones. This has led to novel approaches in the design and analysis of multi-agent systems and the algorithms associated with them. It has spawned an entirely new field of research called \emph{swarm robotics}. A definition of swarm robotics as given by \c{S}ahin and Spears is,
 \begin{quote}\emph{The study of how a swarm of relatively simple physically embodied agents can be constructed to collectively accomplish tasks that are beyond the capabilities of a single one.}\cite{Sahin2005}
 \end{quote}
@@ -12,7 +9,7 @@ This literature survey paper attempts to collate the research done so far in thi
 
 Swarm systems have many benefits over traditional, centralized robot systems. The robots used in swarm applications are generally many orders of magnitude smaller (centimeters vs. meters, grams vs. kilograms) and simpler in design ($<10$ actuators vs. $100$s of actuators) than conventional robots. Also, most swarm systems are homogeneous---robots with identical software/hardware are used to complete the assigned task. This makes swarm systems easily scalable while simultaneously keeping manufacturing and maintenance costs of the hardware low. Though, perhaps their greatest advantage is system stability and robustness to error. Many well known swarm algorithms such as Ant Colony Optimization, Virtual Pheromone Tracking~\cite{Payton2005}, and Particle Swarm Optimization  rely on the fact that most agents (ants/particles) are on a non-optimum trajectory so as to maximize coverage over the search space. This concept also carries over to a hardware swarm system. Most swarm systems consist of small, relatively simple robots that are only capable of limited and noisy sensing, communication and actuation. This means that while no single robot alone is capable of performing the task assigned, the system as a whole is resilient to individual errors from agents and is capable of completing the task.
 
-\begin{figure}[htb]
+\begin{figure}[!ht]
 \centering\begin{subfigure}{.5\textwidth}
 \centering\includegraphics[height=4cm,width=6.5cm]{alicerobot.png}
 \caption{Alice robot}
@@ -30,7 +27,7 @@ Swarm systems have many benefits over traditional, centralized robot systems. Th
 \caption{Droplet robot}
 \end{subfigure}
 \caption{}\label{fig:swarmbots}
-\end{figure} 
+\end{figure}
 
 So then, why do we want to model swarm systems? While much progress has been made in the development and production of miniature swarm robots such as, Alice, Khepera, Kilobots, etc.\cite{Dorigo2005, Seyfried2005, Mondada2009, Caprari1998, Rubenstein2012} there is still no viable large scale ($> 10,000$ units) implementation available. It is also difficult to observe and measure large scale system properties during physical experiments without the use of more sophisticated tools like machine vision and global communication. Thus, many algorithms in the field have been developed and formally proven using mathematical models and computer simulation, generally backed up by small scale physical experiments. While physics based simulators such as Webots\cite{Michel1998} are indeed helpful for rapid experimentation and observation, they take time to develop and are computationally intensive processes. Simulations are generally faster than physical experiments but slower than mathematical models. They are also not exact---by their very nature---and therefore could miss emergent behavior or other macroscopic properties as they tend to simulate systems on the individual agent or microscopic level. 
 
