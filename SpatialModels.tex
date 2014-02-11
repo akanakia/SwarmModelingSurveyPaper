@@ -17,10 +17,10 @@ In Eqn.~\eqref{eq:lan}, $\V{R}(t)$ represents the position of the agent at time-
 
 \begin{figure}[!ht]
 \centering\begin{subfigure}{.5\textwidth}
-\centering\includegraphics[width=7cm]{LanNoDrift.png}
+\centering\includegraphics[width=7cm]{assets/LanNoDrift.png}
 \end{subfigure}~
 \centering\begin{subfigure}{.5\textwidth}
-\centering\includegraphics[width=7cm]{LanDrift.png}
+\centering\includegraphics[width=7cm]{assets/LanDrift.png}
 \end{subfigure}
 \caption{Left: Solution to Langevin equation for a particle in 1D with $\V{A} = 0$, i.e. no drift. Right: Solution with $\V{A} = 0.1$. In both cases the diffusion coefficient is constant, $B = 0.3$, and $\V{F}$ uses an uncorrelated normal distribution with mean $\left<\V{F}\right> = 0$.}\label{fig:lan}
 \end{figure}
@@ -31,7 +31,7 @@ From the Langevin equation used in the previous section, we can derive the Fokke
 \PD{\rho(\V{r},t)} = -\nabla(\V{A}(\V{r},t)\rho(\V{r},t))+\frac{1}{2}Q\nabla^2(B^2(\V{r},t)\rho(\V{r},t))
 \end{equation}
 \begin{figure}[!ht]
-\centering\includegraphics[width=7cm]{fokkerPlanck.png}
+\centering\includegraphics[width=7cm]{assets/fokkerPlanck.png}
 \centering\caption{A visual comparison between the spatial micro vs. macro-level equations. The colored lines on the $r$-$t$ plane show the paths taken by individual particles, found via the Langevin equation, while the overarching red curve is the probability distribution for the entire ensemble as described by the Fokker-Planck equation.}\label{fig:fokkerplanck}
 \end{figure}
 
@@ -41,7 +41,7 @@ A clear and concise derivation of the above equation from the Langevin equation 
 The Fokker Planck equation is a relatively new tool in the field of swarm robot modeling and has notably been used by Hamann\cite{Hamann2008, Hamann2010}, as well as Prorok, Correll and Martinoli\cite{Prorok2011} in their work on boundary coverage and inspection of jet-turbine engines using swarms of miniature robots. They used a hybrid approach for modeling collective inspection that involves a probabilistic non-spatial model coupled with spatial micro-macro diffusion equations for modeling collective inspection of regular structures to improve consensus with observed experimental values. 
 
 \begin{figure}[!ht]
-\centering\includegraphics[width=8.5cm]{spatSignal.png}
+\centering\includegraphics[width=8.5cm]{assets/spatSignal.png}
 \centering\caption{Experiment setup for centralized robot population control experiment proposed by Milutinovi\`{c} and Lima in\cite{Milutinovi2006}.}\label{fig:signal}
 \end{figure}
 

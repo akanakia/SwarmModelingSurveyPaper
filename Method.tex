@@ -19,12 +19,12 @@ With this experiment setup in mind we will now discuss designing the robot contr
 The original robot controller for the stick pulling experiment was designed as a flowchart seen in Figure~\ref{fig:stickchart}. The rectangular boxes in the flowchart are states that the robot controller can be in while the rhomboid shapes signify decision processes within the controller. The result of each decision process is dependent on several factors, for example, the \emph{object detected?} decision depends on feedback from the robot's IR proximity sensors. The \emph{obstacle?} decision depends on the output produced by the sensory neural net of the agent (see Figure~\ref{fig:khepschem}). The \emph{obstacle?} decision happens when the robot has an object in front of it and must decide whether it is an obstacle such as another robot or wall, or a target such as a stick. As one can imagine, the output from the neural net is not always correct due to factors like the distance and angle of incidence between the detecting robot and the object in front of it, as well as sensor noise.
 
 \begin{figure}[!tp]
-\centering\includegraphics[width=10cm]{stickControl.png}
+\centering\includegraphics[width=10cm]{assets/stickControl.png}
 \centering\caption{Flowchart for an individual robot controller in the stick pulling experiment.}\label{fig:stickchart}
 \end{figure}
 
 \begin{figure}[!tp]
-\centering\includegraphics[width=12.5cm]{stickprobcontrol.png}
+\centering\includegraphics[width=12.5cm]{assets/stickprobcontrol.png}
 \centering\caption{\textbf{Top:} A visualization of the conversion function $\boldsymbol{\tau}:\mathbb{R}^2_{\geq0} \rightarrow \mathbb{R}_{\geq0}$, going from a 2D physical space to a 1D probability space. \textbf{Bottom:} Flowchart of a robot controller in the probabilistic model of the stick pulling experiment. $p_{robots} =$ probability of encountering teammates; $p_{walls} =$ probability of encountering walls; $p_{sticks} =$ probability of encountering one of the sticks; $p_{grip2} =$ probability to make a grip2} \label{fig:probstickchart}
 \end{figure}
 
@@ -164,7 +164,7 @@ One of the advantages of using macroscopic, mathematical models for describing r
 
 The Microscopic model (or micro-model) of a swarm system can be simulated using the \emph{Gillespie} simulation technique\cite{Gillespie1976, Gillespie1977}. Here, each agent is simulated individually using dice rolls and probability. Gillespie developed this simulation algorithm in the 1970s to model the time evolution of reactant and product volumes in a chemical reaction. The individual agents in his chemical system were single molecules of the reactant and the micro-model was derived from the dynamics of molecule interactions. The probability of two reactant molecules colliding was computed using simple physical properties such as the radius and velocity of the molecules in the reaction medium\cite{Gillespie1976}. 
 \begin{figure}[!t]
-\centering\includegraphics[width=15cm]{martinoliModelMethod.png}
+\centering\includegraphics[width=15cm]{assets/martinoliModelMethod.png}
 \centering\caption{Gillespie simulation of a swarm system. Each controller, PPP$_i$, describes the independent behavior of a single robot in the swarm. Environmental variables are updated at the end of each iteration.}\label{fig:micromodel}
 \end{figure}
 
@@ -183,11 +183,11 @@ To be able to accurately recreate a task on a swarm system without investing the
 
 \begin{figure}[!ht]
 \begin{subfigure}{.5\textwidth}
-\centering\includegraphics[width=6.5cm]{gazebo.png}
+\centering\includegraphics[width=6.5cm]{assets/gazebo.png}
 \centering\caption{The Gazebo robot simulator with the PR2 robot.\footnotemark}\label{fig:gazebo}
 \end{subfigure}~
 \begin{subfigure}{.5\textwidth}
-\centering\includegraphics[width=6.5cm]{dsim.png}
+\centering\includegraphics[width=6.5cm]{assets/dsim.png}
 \centering\caption{The Droplet swarm robot simulator}\label{fig:dropletsim}
 \end{subfigure}
 \caption{}
@@ -200,7 +200,7 @@ In almost all swarm robot literature, the results being discussed about a swarmi
 
 \subsection{Repeating the Design Loop}
 \begin{figure}[!ht]
-\centering\includegraphics[width=15cm]{modelLoop.png}
+\centering\includegraphics[width=15cm]{assets/modelLoop.png}
 \centering\caption{}\label{fig:recipe}
 \end{figure}
 

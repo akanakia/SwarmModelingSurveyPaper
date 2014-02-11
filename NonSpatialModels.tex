@@ -12,14 +12,14 @@ Object clustering, or aggregation, is one of the early applications for robot sw
 Agassounon, Kalra and Martinoli introduce worker allocation via threshold functions as a variant to the original object clustering experiment in~\cite{Kalra2006, Agassounon2001} and expand the results in~\cite{Agassounon2002a}. Here, agents decide whether or not to help with the global task (stick collecting) based on their local perception of the degree of completion of the task. While earlier attempts at threshold based collective algorithms for robots suffer from scalability issues arising from explicit communication~\cite{Parker1998} between agents or the need for a centralized supervisor~\cite{Krieger2000}, the collaborative approach presented in~\cite{Agassounon2001} employs a wholly distributed strategy where agents use only local observations to make work vs. rest decisions. 
 
 \begin{figure}[!htb]
-\centering\includegraphics[width=\textwidth]{martinoliMondadaStickCollect.png}
+\centering\includegraphics[width=\textwidth]{assets/martinoliMondadaStickCollect.png}
 \caption{Webots simulation of Khepera robots performing object clustering. Left image shows the initial placement of robots/sticks in the arena while the right image shows the successful completion of the task.}\label{fig:stickforage}
 \end{figure}
 
 
 \subsubsection*{Results}
 \begin{figure}[!htb]
-\centering\includegraphics[width=.5\textwidth]{clusterRes.png}
+\centering\includegraphics[width=.5\textwidth]{assets/clusterRes.png}
 \caption{Results from the original object clustering task without threshold based worker allocation emphasizing the non-cooperative nature of the task, i.e. more robots do not necessarily complete the task faster.}\label{fig:clusterres}
 \end{figure}
 
@@ -32,7 +32,7 @@ For the sake of brevity, results from the threshold based worker allocation vari
 \subsection{The Stick Pulling Experiment}\label{sec:stickpull}
 
 \begin{figure}[!htb]
-\centering\includegraphics[width=.8\textwidth]{stickpullPhysical.png}
+\centering\includegraphics[width=.8\textwidth]{assets/stickpullPhysical.png}
 \caption{A real experimental setup for the 2-robot stick pulling experiment showing a team of two robots successfully pulling a stick out of the ground.}\label{fig:stickpull}
 \end{figure}
 
@@ -47,12 +47,12 @@ The robots used for this task are called \emph{Khepera} robots. The technical sp
 \begin{figure}[!htb]
 \centering 
 \begin{subfigure}[b]{6.5cm}
-\includegraphics[width=5cm]{khepera2robot.png}
+\includegraphics[width=5cm]{assets/khepera2robot.png}
 \centering\caption{The Khepera-II robot used in the \emph{Stick Pulling Experiment} by Martinoli et. al.}\label{fig:khepbot}
 \end{subfigure}
 \qquad\centering
 \begin{subfigure}[b]{6.5cm}
-\includegraphics[width=5cm]{kheperascem.png}
+\includegraphics[width=5cm]{assets/kheperascem.png}
 \centering\caption{Neural net that controls sensory feedback on the Khepera-II robot for the stick pulling experiment.}\label{fig:khepschem}
 \end{subfigure}
 \caption{}\label{fig:kheperastick}
@@ -81,7 +81,7 @@ A particularly interesting insight derived from the classical stick pulling expe
 It is found that for the case where two robots are needed to pull out a stick, an optimum wait-time exists for maximizing the rate of sticks pulled when the number of robots is less than or equal to the number of sticks in the arena (see Figure~\ref{fig:stickopt}). Intuitively, if we have more robots than sticks, the best strategy for a robot at a stick is to just wait forever since there will be at least one robot still searching at all times. On the other hand, if there are fewer (or equal) robots than sticks, the strategy of waiting forever could cause a deadlock situation in the arena where every robot is at an individual stick waiting for a partner to arrive.
 
 \begin{figure}[!ht]
-\centering\includegraphics[width=.85\textwidth]{stickopt.png}
+\centering\includegraphics[width=.85\textwidth]{assets/stickopt.png}
 \centering\caption{Left: Collaboration rate as a function of the gripping time in homogeneous groups of robots. The large single markers correspond to the results with the real robots, the linked small markers to those with the Webots simulator, and the underlying continuous lines to those with the probabilistic simulation. Right: Relative collaboration rate per robot (i.e., the average number of collaborations over time to which one robot participates by either making a first or second grip). Error-bars correspond to $\pm$ standard deviations of the results with the probabilistic model (thicker bars) and with Webot (thin lines). For reasons of clarity, only some errorbars are shown and results are only shown for gripping time parameters up to 600s.}\label{fig:stickopt}
 \end{figure}
 
@@ -90,11 +90,11 @@ It is found that for the case where two robots are needed to pull out a stick, a
 \subsection{Coalition Formation}
 \begin{figure}[!ht]
 \centering\begin{subfigure}{.5\textwidth}
-\centering\includegraphics[width=6cm]{coalflowchart.png}
+\centering\includegraphics[width=6cm]{assets/coalflowchart.png}
 \caption{}\label{fig:coalfl}
 \end{subfigure}~
 \centering\begin{subfigure}{.5\textwidth}
-\centering\includegraphics[width=6cm]{coalfsm.png}
+\centering\includegraphics[width=6cm]{assets/coalfsm.png}
 \caption{}\label{fig:coalfsm}
 \end{subfigure}
 \caption{The flowchart and associated FSM used to describe the robot controller for coalition formation experiments are discussed by Lerman et al.}\label{fig:coal}
@@ -108,7 +108,7 @@ A coalition between two or more buyers is formed if they are all purchasing the 
 This application has been mainly used to illustrate the use of differential equation, macro-level models for studying multi-agent systems\cite{Lerman2001a, Lerman2001b}. The analysis provided explains how even a ``greedy'' agent based approach can lead to maximal utility gains for the entire system. This is a recurring property of many swarm systems---decisions are often made by an individual agent based only on local information but the effect of the decision is felt globally throughout the system.
 
 \begin{figure}[!ht]
-\centering\includegraphics[width=.5\textwidth]{coalDensity.png}
+\centering\includegraphics[width=.5\textwidth]{assets/coalDensity.png}
 \caption{Plot showing utility gain in the coalition experiment with group sizes ranging from 1 to 6 per coalition and varying attachment/detachment rates}\label{fig:coaldensity}
 \end{figure}
 
@@ -124,11 +124,11 @@ where $N$ is the total number of agents, $p_n$ is the coalition price dependent 
 \subsection{Cockroach Aggregation}
 \begin{figure}[!htb]
 \centering\begin{subfigure}{.5\textwidth}
-\centering\includegraphics[width=6cm]{cockroachagg.png}
+\centering\includegraphics[width=6cm]{assets/cockroachagg.png}
 \caption{A snapshot of the real cockroach aggregation experiment conducted by Jeanson et al. The cockroaches cluster under red protective covers that block light.}\label{fig:roachagg}
 \end{subfigure}~
 \centering\begin{subfigure}{.5\textwidth}
-\centering\includegraphics[width=6cm]{cockroachaggsim.png}
+\centering\includegraphics[width=6cm]{assets/cockroachaggsim.png}
 \caption{A simulation of the aggregation experiment using robots with communication ranges shown as blue circles surrounding each agent.}\label{fig:roachaggmodel}
 \end{subfigure}
 \caption{}
@@ -137,7 +137,7 @@ where $N$ is the total number of agents, $p_n$ is the coalition price dependent 
 In~\cite{Jeanson2005}, Jeanson et al. showed that a species of cockroach, \emph{Blattella germanica}, exhibited clustering mechanics to form groups using only local information and without knowledge of the global structure of the environment or group sizes. An agent based, biological model is developed and described in the above paper where simple action rules are extrapolated from watching real cockroach aggregation behavior in a closed environment under different lighting conditions.
 
 \begin{figure}[!htb]
-\centering\includegraphics[width=.5\textwidth]{aggfsm.png}
+\centering\includegraphics[width=.5\textwidth]{assets/aggfsm.png}
 \caption{The PFSM the describes the robot controller for the aggregation experiment. The probabilities shown are probabilities of leaving a cluster of size $n-1$ to join a cluster of size $n$ and vice-versa, as well as the probability to leave a cluster entirely and go back to searching.}\label{fig:aggfsm}
 \end{figure}
 
@@ -147,7 +147,7 @@ The data collected from real cockroach aggregation inspired the development of a
 In~\cite{Correll2011} the authors theorize that the size of clusters formed by robots can be controlled simply by adjusting their communication range. Specifically, ``For the system with dynamics found in [\ldots eqns representing the robot controller as seen in Figure~\ref{fig:aggfsm}], the system behavior can change between dispersion and aggregation simply by tuning $p_c$ [encountering probability], as long as the inequalities for $p^{join}(j)$ and $p^{leave}(j)$ [probability to join/leave a cluster, respectively] are satisfied.''
 
 \begin{figure}[!htb]
-\centering\includegraphics[width=.75\textwidth]{roachRes.png}
+\centering\includegraphics[width=.75\textwidth]{assets/roachRes.png}
 \caption{Left: Results of varying communication range and solving macro-model simulation of cockroach aggregation experiment using robotic agents. Right: Results of real cockroach aggregation obtained from experiments and simulation by Jeanson et al. The similarities between both plots are apparent.}\label{fig:roachres}
 \end{figure}
 
@@ -157,7 +157,7 @@ Figure~\ref{fig:roachres} shows plots of average cluster sizes observed over tim
 \subsection{Collective Inspection Of Regular Structures}
 
 \begin{figure}[!htb]
-\centering\includegraphics[width=.5\textwidth]{turbexp.png}
+\centering\includegraphics[width=.5\textwidth]{assets/turbexp.png}
 \caption{A simplified (unfolded) jet turbine inspection arena with marked blades and Alice robots performing inspection.}\label{fig:turbexp}
 \end{figure}
 
@@ -167,14 +167,14 @@ These constraints on the inspection task make it well suited for a miniature rob
 
 \subsubsection*{Results}
 \begin{figure}[!htb]
-\centering\includegraphics[width=.75\textwidth]{bladeDist.png}
+\centering\includegraphics[width=.75\textwidth]{assets/bladeDist.png}
 \caption{Distribution of the robots on the arena (dark areas correspond to frequently visited regions). Each experiment lasted 2h with 20 robots. Left: Default setup with the default inspection algorithm. Center: Set-up rotated of 180 degrees. Right: Rotated setup and robots characterized by a random walk behavior.}\label{fig:bladedist}
 \end{figure}
 
 Simulation results seen in Figure~\ref{fig:bladedist} show that the probability distribution (agent dispersion and coverage pattern) is non-uniform both, due to the shape of the blades, and border-following algorithm used by robots. It is evident that simply rotating the orientation of the blades results in a different coverage pattern of the arena, by the robots.
 
 \begin{figure}[!htb]
-\centering\includegraphics[width=.75\textwidth]{bladeRes.png}
+\centering\includegraphics[width=.75\textwidth]{assets/bladeRes.png}
 \caption{Comparison of microscopic and macroscopic model predictions (basically superimposed) and experimental results. Experimental results are represented by the median and standard deviation because of long tail distributions while microscopic models by mean and standard deviation. Left: Time to completion (16 blades) vs. team size (1 to 20 robots, 5, 10, 16, 20 robots respectively). Right: Number of blades redundantly covered until inspection completion vs. team size.}\label{fig:bladeres}
 \end{figure}
 
@@ -189,7 +189,7 @@ All the collaborative tasks discussed so far are characterized by a binary outco
 
 \begin{figure}[!tp]
 \centering\begin{subfigure}{.5\textwidth}
-\centering\includegraphics[width=5cm]{setup.png}
+\centering\includegraphics[width=5cm]{assets/setup.png}
 \centering\caption{A visual representation of the collaboration experiment being studied. Objects in the image are not to scale.}\label{fig:setup}
 \end{subfigure}~
 \centering\begin{subfigure}{.5\textwidth}
@@ -228,21 +228,21 @@ In equation~\eqref{eq:sigmoid} control parameter $\theta$ controls the slope of 
 
 \begin{figure}[!htb]
 \centering\begin{subfigure}{.5\textwidth}
-\centering\includegraphics[width=6.5cm]{sigmoid1.png}
+\centering\includegraphics[width=6.5cm]{assets/sigmoid1.png}
 \caption{Increasing $\theta$ in the sigmoid function increases it's slope at the point $\sigma^* = \tau$, $p_{ws}(\sigma^*) = 0.5$.}
 \end{subfigure}~
 \centering\begin{subfigure}{.5\textwidth}
-\centering\includegraphics[width=6.5cm]{sigmoid2.png}
+\centering\includegraphics[width=6.5cm]{assets/sigmoid2.png}
 \caption{Changing the $\tau$ parameter in the sigmoid function, offsets the curve along the $\sigma$ axis.}
 \end{subfigure}
 \caption{}\label{fig:sig}
 \end{figure}
 
 \subsubsection*{Results}
-\begin{figure*}[!ht]
-\centering\includegraphics[width=\textwidth]{macmic.png}
+\begin{figure}[!ht]
+\centering\includegraphics[width=\textwidth]{assets/macmic.png}
 \caption{Macro-level numerical solutions and micro-level Gillespie simulation data plots for the proposed collaboration model. Left: $N_0 = 8$, $M = 2$, $\theta = 4$, and $\tau = 2$. Right: $N_0 = 50$, $M = 5$, $\theta = 5$, and $\tau = 4$. Data plotted for 200 seconds of simulation time and 100 runs each.}\label{fig:macmic}
-\end{figure*}
+\end{figure}
 
 We numerically solve the rate equations with the given initial condition that all robots start off in the search state(\eqref{eq:macro1} to \eqref{eq:macro4}), for $N_s(t)$, $N_w(t)$ and $R_c(t)$, from $t = [0, 200]$. Here, $R_c(t)$ is not a state variable of the robot controller but is an aggregated value that measures the collaboration rate of the system at each time step and is mathematically described by
 \begin{equation}
@@ -253,17 +253,17 @@ i.e., the number of robots going from the wait state to the search state at time
 Numerical solutions for the rate equation are shown in Figure~\ref{fig:macmic}, along with data from the microscopic simulation for the same quantities. The two plots show that the system approaches a steady state distribution of agents for each of the two states. We perform the macro-level solution and the micro-level experiments with two sets of system parameters. The left plot in Figure~\ref{fig:macmic} shows results from experiments conducted using 8 robots, 2 collaboration sites, expected group sizes $\tau = 2$, and the sigmoid slope parameter $\theta = 4$. The right plot in Figure~\ref{fig:macmic} shows results using $N_0$ = 100 robots, $M = 5$ collaboration sites, $\tau = 5$ expected group size, and $\theta = 4$. The data points for the microscopic model are averaged over a hundred runs per point.
 
 
-\begin{figure*}[!ht]
+\begin{figure}[!ht]
 \centering\begin{subfigure}{7.5cm}
-\centering\includegraphics[width=7.5cm]{macroSweepM1.png}
+\centering\includegraphics[width=7.5cm]{assets/macroSweepM1.png}
 \caption{$M = 1$}\label{}
 \end{subfigure}~
 \centering\begin{subfigure}{7.5cm}
-\centering\includegraphics[width=7.5cm]{macroSweepM3.png}
+\centering\includegraphics[width=7.5cm]{assets/macroSweepM3.png}
 \caption{$M = 3$}\label{}
 \end{subfigure}~
 \caption{Numerical solutions for the rate equations~\eqref{eq:macro1} to \eqref{eq:macro4} with $N_0 = 8$ and $t = [0, 200]s$ as we sweep the sigmoid control parameters, $\theta$ and $\tau$.}\label{fig:sweeps}
-\end{figure*}
+\end{figure}
 
 Figure~\ref{fig:sweeps} showcases the macro-level behavior of the swarm system when we sweep across $\theta$ and $\tau$, numerically solving the rate equations. As the slope of the sigmoid at $\sigma^*$ gets higher, we expect to see system behavior and average group sizes resembling that as if a step function was used instead of the sigmoid probability function, i.e. for $\theta \gg 1$, 
 \begin{equation*}
@@ -276,7 +276,7 @@ p_{ws}(\sigma) \approx \Theta(\sigma) = \left\{
 The sloped portion of the graphs reinforces this assertion that setting higher values for $\theta$ does indeed result in average observed group sizes being close to the requested collaboration threshold using the $\tau$ parameter. As the slope parameter, $\theta$, is reduced, we see a marked drop in the correspondence between observed vs. requested group sizes. We also see that increasing $\theta$ past a certain point results in no major observed vs. requested group size shift.
 
 \begin{figure}[!tp]
-\centering\includegraphics[width=7cm]{distsweep.png}
+\centering\includegraphics[width=7cm]{assets/distsweep.png}
 \caption{Relative distribution of robot group sizes as $\theta$ is varied, while keeping all other parameters constant.}\label{fig:var}
 \end{figure}
 

@@ -3,17 +3,15 @@
 % section files to.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\documentclass[11pt, onecolumn, compsoc, letterpaper]{article}
-\documentclass{kerauth}
+\documentclass{KERauth}
 
 % Usual setup packages
 %\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
-\usepackage{geometry} % to change the page dimensions
-\usepackage{graphicx} % General page control package
+%\usepackage{geometry} % to change the page dimensions
+%\usepackage{graphicx} % General page control package
 %\usepackage{titling} % For customizing titles
 %\usepackage[compact, raggedright]{titlesec} % For compact title
-\usepackage{listings} % For including source code with highlighting
-\usepackage{subfiles} % For better multiple file per paper handling
-\usepackage{hyperref} % For better hyper-link integration
+
 
 % Packages for verbatim text blocks
 \usepackage{alltt} % Package for including math in verbatim text
@@ -23,6 +21,11 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+
+% Packages for including external code files
+\usepackage{listings} % For including source code with highlighting
+\usepackage{subfiles} % For better multiple file per paper handling
+\usepackage{hyperref} % For better hyper-link integration
 
 % Packages for including pseudo-code
 \usepackage{algorithmicx}
@@ -51,14 +54,17 @@
 }
 
 % smaller tab space
-\lstset{
-	tabsize=2
-}
+%\lstset{
+%	tabsize=2
+%}
 
 % Packages for drawing graphs, FSMs, etc.
 \usepackage{pgf}
 \usepackage{tikz}
 \usetikzlibrary{arrows,positioning,shapes.symbols,shapes.callouts,patterns,automata}
+
+% Harvard style bibliography
+\usepackage[sorting=nyt,style=apa]{biblatex}
 
 %%% HEADERS & FOOTERS
 %\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
@@ -81,7 +87,7 @@
 
 % Custom commands
 % - Spacing
-\newcommand{\tab}{\hspace*{2em}}
+%\newcommand{\tab}{\hspace*{2em}}
 
 % - Math
 \newcommand{\abs}[1]{\lvert#1\rvert}
@@ -99,6 +105,11 @@
 \refstepcounter{comcount}
 \smallskip\noindent\fbox{\parbox{\linewidth}{\emph{Comment \arabic{comcount}} : \small{#1}}} 
 }
+
+% remap \cite
+\let\cite\textcite
+
+\bibliography{PrelimReferences}
 
 % Squeeze whitespace
 %\setlength{\parskip}{0pt}
@@ -118,11 +129,11 @@
 
 \begin{document}
 \title{A Survey of Non-Spatial and Spatial Modeling Techniques and Applications for Robot Swarms}
-\author{Anshul Kanakia}
+\author{Anshul Kanakia and Nikolaus Correll}
 
 %\begin{document}
 %\maketitle
-
+\KER{1}{24}{00}{0}{2014}{S000000000000000}
 \begin{abstract}
 Abstract goes here\ldots
 \end{abstract}
@@ -136,7 +147,7 @@ Abstract goes here\ldots
 
 % Bibliography
 % \nocite{*} % Show all Bib-entries
-\bibliographystyle{acm}
-\bibliography{PrelimReferences}
-
+% \bibliographystyle{plain}
+%\bibliography{PrelimReferences}
+\printbibliography
 \end{document}
