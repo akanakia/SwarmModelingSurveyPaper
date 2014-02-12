@@ -35,3 +35,5 @@
 *.bak
 *.pdf
 *.bib.bak
+*.bcf
+*.run.xml
