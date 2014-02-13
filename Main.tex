@@ -61,7 +61,7 @@
 % Packages for drawing graphs, FSMs, etc.
 \usepackage{pgf}
 \usepackage{tikz}
-\usetikzlibrary{arrows,positioning,shapes.symbols,shapes.callouts,patterns,automata}
+\usetikzlibrary{shapes,arrows,calc,fit,positioning,shapes.symbols,shapes.callouts,patterns,automata}
 
 % Harvard style bibliography
 \usepackage[sorting=nyt,style=apa]{biblatex}
@@ -96,6 +96,9 @@
 \newcommand{\PD}[2][t]{\frac{\partial #2}{\partial #1}}
 \newcommand{\V}[1]{\mathbf{#1}}
 \DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand{\sig}{\mathcal{S}}
+\newcommand{\ceil}[1]{\lceil#1\rceil}
 
 % Nice Little macro for adding a comment box. Includes incrementing comment numbers.
 \newcounter{comcount}
@@ -142,6 +145,7 @@ Abstract goes here\ldots
 \subfile{Terms}
 \subfile{Method}
 \subfile{NonSpatialModels}
+\subfile{CollabModel}
 \subfile{SpatialModels}
 \subfile{Conclusion}
 
@@ -149,5 +153,5 @@ Abstract goes here\ldots
 % \nocite{*} % Show all Bib-entries
 % \bibliographystyle{plain}
 %\bibliography{PrelimReferences}
-\printbibliography
+%\printbibliography
 \end{document}
