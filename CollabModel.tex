@@ -7,20 +7,13 @@ We wish to extend the stick pulling model of constant group sizes of robots to i
 The proposed algorithm and model is inspired from task allocation in biological systems such as ant colonies \cite{Bonabeau1999,Krieger2000}. We employ the use of a response threshold sigmoid function that probabilistically triggers the beginning of a collaboration step between robots at the same collaboration site. We study this approach via macroscopic models and microscopic simulations.
 The sigmoid function used in our model is commonly referred to as the \emph{Logistic} function and has control parameters that allow us to alter its offset and slope. We study the effects that changing these parameters has on the system-wide behavior of the robot swarm. We also draw comparisons between this collaboration model and similar models used by Lerman et al. for the \emph{n}-robot stick pulling experiment \cite{Lerman2001} and discuss situations where it is beneficial to use one model over the other.
 
-The rest of the paper is organized as follows. Section \ref{sec:expsetup} introduces the task allocation algorithm that we will be studying throughout the course of the paper.
-Section \ref{sec:macromodel} provides a mathematical basis for the threshold based collaboration model and attempts to explain how the voting strategy being employed affects group sizes and their variance.
-Section \ref{sec:micromodel} provides an explanation of the agent level controller in the system. This section further outlines the experimental setup being used to run simulations and the important parameters of the system. 
-We compare collaboration rates of our model with the constant group size model introduced by Lerman et al.~\cite{Lerman2001} using micro-level Gillespie simulation in Section \ref{sec:micromodel}, showing that the dynamics are comparable for similar team sizes, yet allow us to tune the variance of the resulting group size.  
-Finally, Sections \ref{sec:discussion} and \ref{sec:conclusion} provide discussion of the drawbacks and limitations of the proposed model and scenarios where it could fail as well as discussing possible avenues for future work.
-
-\subsection{Related work}
+\subsection*{Related work}
 Task allocation is a canonical problem in multi-robot systems \cite{Gerkey2004}. Whereas capable robots might be able to approximate optimal task allocation, e.g., using market-based approaches \cite{amstutz2008distributed,vig2007coalition} or using  leader-follower coalition algorithms \cite{Chen2011}, probabilistic algorithms are of particular interest for swarm robotics with individually simple controllers \cite{dantu2012comparison}. To recruit an exact number of robots to a particular task has been extensively studied at the hands of the ``Stick Pulling'' experiment \cite{Lerman2001,Martinoli2004}, whereas to distribute a swarm of robots across a discrete number of sites/tasks with a specific desired distribution has been studied in \cite{Berman2009,Correll2008}. The proposed algorithm extends upon the first group of work, and we show how the proposed stochastic task allocation algorithm reduces to \cite{Lerman2001,Martinoli2004} when using appropriate parameters.  Mather \cite{mather2010towards} instead presents a stochastic approach that is a hybrid between the work in \cite{Berman2009} and \cite{Martinoli2004}, allowing allocation to tasks requiring a varying number of robots.
 While a response threshold function can also be applied to the swarm distribution problem, this problem is complementary to the problem of recruiting a team of a specific size. 
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Response threshold-based task allocation}\label{sec:expsetup}
 \begin{figure}[!htb]
 \centering\includegraphics[width=7cm]{assets/setup.png}
 \caption{A visual representation of the collaboration experiment being studied.}\label{fig:setup}
@@ -76,10 +69,9 @@ Note that the proposed response threshold function is different from \cite{Bonab
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Macroscopic analysis}\label{sec:macromodel}
 In this section we study how the proposed algorithm leads to the desired behavior, an average group size of $\tau$ with variance proportional to $\theta$ on macroscopic level. 
 
-\subsection{A general model of probabilistic task allocation}
+\subsection*{A general model of probabilistic task allocation}
 Equation \eqref{eq:sig} is a cumulative probability density function approaching $1.0$ as the number of agents approaches infinity, that is $\lim_{x \to \infty}\sig(x)=1$. For $\theta \to \infty$, equation \eqref{eq:sig} approximates the unit step, except for the special case $x=\tau$:
 \begin{equation}
 \lim_{\theta \to \infty} \frac{1}{1+e^{\theta(\tau-x)}}=
@@ -93,7 +85,7 @@ Equation \eqref{eq:sig} is a cumulative probability density function approaching
 \end{equation}
 The discontinuity at $x=\tau$ is the rational for having collaboration to include half or more of the agents to decide to collaborate. Including the mid-point makes the agents behave like they are using a unit-step function in the case of $\theta \to \infty$. The proposed model is therefore a generalization of the ``stick-pulling'' task allocation model with deterministic team size \cite{Lerman2001}, allowing us to tune the variance of the resulting group sizes. 
 
-\subsection{From individual choices to team-level collaboration}
+\subsection*{From individual choices to team-level collaboration}
 Assuming the agents to be loosely synchronized, e.g., by considering decisions within a finite window of time, determining a majority vote corresponds to a Bernoulli trial with each agent flipping a biased coin---the bias being computed using the sigmoid function---to decide whether or not to collaborate in the next time step. The probability that exactly $k$ agents collaborate from a population of $n$ agents at a collaboration site is given by the probability mass function (pmf) of a Binomial distribution.
 \begin{equation}
 	B(n, k) = \binom{n}{k}\sig(n)^{k}\left(1 - \sig(n)\right)^{n - k}\label{eq:binomial}
@@ -115,7 +107,7 @@ A caveat of \eqref{eq:normalcdf} is that the Normal approximation yields poor re
 
 
 
-\subsection{Optimal team formation}
+\subsection*{Optimal team formation}
 The proposed task allocation mechanisms lets agents wait infinitely to achieve collaboration. In case a deterministic number of agents is required, this bears the risk that the agents run into a deadlock, e.g., when the number of collaboration sites times the required team size exceeds the number of agents. 
 
 For this reason, stick pulling-like collaboration \cite{Lerman2001} has an optimal wait time, which can be analytically derived for teams of two ($\tau=2$) \cite{Martinoli2004}. Such an optimum does not exist in the proposed model as there is a non-zero probability team sizes with $n<\tau$ to eventually collaborate. 
@@ -126,7 +118,6 @@ Indeed, Algorithm \ref{alg:sigalg} eventually completes as $\sig(x) > 0 \forall 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Microscopic Model}\label{sec:micromodel}
 As the proposed collaboration mechanism are strongly non-linear, we chose microscopic stochastic simulations to explore the underlying dynamics of the system. The approach followed to build the stochastic Gillespie simulation of the system is as follows.
 \begin{itemize}
 \item Perform random walk till a collaboration site is found (\emph{search} state).
@@ -207,7 +198,7 @@ Table~\ref{tab:params} lists the common system parameters used for all experimen
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Results}
+\subsection*{Results}
 \begin{figure}[!htb]
 \begin{subfigure}{0.33\textwidth}
 \centering\includegraphics[width=4.5cm]{assets/LermanCollabCompare3.png}
@@ -273,7 +264,7 @@ Figure \ref{fig:vars} shows how the variance of group size decreases with increa
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Discussion}\label{sec:discussion}
+\subsection*{Discussion}\label{sec:discussion}
 Results in Figures \ref{fig:lercol}, \ref{fig:collabsweep} and \ref{fig:meansvars} show that the proposed threshold-based task allocation mechanism is a generalization of the deterministic Lerman model in that it allows to approach what is seen with deterministic group sizes while retaining the elasticity to vary group sizes along any desired range of values. Also, these plots show how altering microscopic control parameters within the agents, $\theta$ and $\tau$ of their sigmoid functions, directly affects macroscopic behavior of the swarm system by altering means and variances of formed group sizes, respectively. Although the matching between microscopic results and macroscopic prediction is not perfect due to the discrete approximation, the plots show that a wide range of means and variances are feasible. Finding appropriate parameters to reach these could be easily achieved using a suitable optimization framework such as presented in \cite{Correll2008,Berman2009}, using the macroscopic predictions as initial estimate. 
 
 The proposed task allocation algorithm requires an estimate of the group size at each collaboration site as well as the ability to communicate with the group in order to reach a consensus. While these assumptions seem to be limiting at first sight, they can be rolled into the analysis process and possibly exploited to design the task allocation process. For example, an increasing variance for observing the group size $\tau$ or noise in the consensus process simply increase the variance of the task allocation process and could therefore be countered---to some extent---by altering the properties of the response threshold function. 
