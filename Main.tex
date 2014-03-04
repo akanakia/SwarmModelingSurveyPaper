@@ -3,7 +3,7 @@
 % section files to.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\documentclass[11pt, onecolumn, compsoc, letterpaper]{article}
-\documentclass{KERauth}
+\documentclass{kerauth}
 
 % Usual setup packages
 %\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
@@ -12,6 +12,10 @@
 %\usepackage{titling} % For customizing titles
 %\usepackage[compact, raggedright]{titlesec} % For compact title
 
+% Harvard style bibliography
+%\usepackage[sorting=nyt,style=apa]{biblatex}
+\usepackage{harvard}
+\usepackage{url}
 
 % Packages for verbatim text blocks
 \usepackage{alltt} % Package for including math in verbatim text
@@ -63,8 +67,7 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows,calc,fit,positioning,shapes.symbols,shapes.callouts,patterns,automata}
 
-% Harvard style bibliography
-\usepackage[sorting=nyt,style=apa]{biblatex}
+
 
 %%% HEADERS & FOOTERS
 %\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
@@ -110,9 +113,9 @@
 }
 
 % remap \cite
-\let\cite\textcite
+%\let\cite\textcite
 
-\bibliography{PrelimReferences}
+%\bibliography{PrelimReferences}
 
 % Squeeze whitespace
 %\setlength{\parskip}{0pt}
@@ -151,7 +154,7 @@ Abstract goes here\ldots
 
 % Bibliography
 % \nocite{*} % Show all Bib-entries
-% \bibliographystyle{plain}
-%\bibliography{PrelimReferences}
+\bibliographystyle{agsm}
+\bibliography{PrelimReferences}
 %\printbibliography
 \end{document}
