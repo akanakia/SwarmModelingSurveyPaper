@@ -6,7 +6,7 @@
 \documentclass{kerauth}
 
 % Usual setup packages
-%\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
 %\usepackage{geometry} % to change the page dimensions
 %\usepackage{graphicx} % General page control package
 %\usepackage{titling} % For customizing titles
@@ -14,7 +14,8 @@
 
 % Harvard style bibliography
 %\usepackage[sorting=nyt,style=apa]{biblatex}
-\usepackage{harvard}
+%\usepackage{harvard}
+\usepackage{natbib}
 \usepackage{url}
 
 % Packages for verbatim text blocks
@@ -112,8 +113,8 @@
 \smallskip\noindent\fbox{\parbox{\linewidth}{\emph{Comment \arabic{comcount}} : \small{#1}}} 
 }
 
-% remap \cite
-%\let\cite\textcite
+% remap \citep
+%\let\citep\citepp
 
 %\bibliography{PrelimReferences}
 
@@ -154,7 +155,7 @@ Abstract goes here\ldots
 
 % Bibliography
 % \nocite{*} % Show all Bib-entries
-\bibliographystyle{agsm}
-\bibliography{PrelimReferences}
+\bibliographystyle{plainnat}
+\bibliography{refworks}
 %\printbibliography
 \end{document}
