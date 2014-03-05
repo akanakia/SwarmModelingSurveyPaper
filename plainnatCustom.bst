@@ -720,8 +720,8 @@ FUNCTION {article}
     }
   if$
   format.issn output
-  format.doi output
-  format.url output
+  % format.doi output
+  % format.url output
   new.block
   note output
   fin.entry
@@ -756,9 +756,9 @@ FUNCTION {book}
   if$
   format.edition output
   format.date "year" output.check
-  format.isbn output
-  format.doi output
-  format.url output
+  % format.isbn output
+  % format.doi output
+  % format.url output
   new.block
   note output
   fin.entry
@@ -774,9 +774,9 @@ FUNCTION {booklet}
   howpublished output
   address output
   format.date output
-  format.isbn output
-  format.doi output
-  format.url output
+  % format.isbn output
+  % format.doi output
+  % format.url output
   new.block
   note output
   fin.entry
@@ -813,9 +813,9 @@ FUNCTION {inbook}
   if$
   format.edition output
   format.date "year" output.check
-  format.isbn output
-  format.doi output
-  format.url output
+  % format.isbn output
+  % format.doi output
+  % format.url output
   new.block
   note output
   fin.entry
@@ -843,9 +843,9 @@ FUNCTION {incollection}
       format.chapter.pages output
     }
   if$
-  format.isbn output
-  format.doi output
-  format.url output
+  % format.isbn output
+  % format.doi output
+  % format.url output
   new.block
   note output
   fin.entry
@@ -881,9 +881,9 @@ FUNCTION {inproceedings}
       format.pages output
     }
   if$
-  format.isbn output
-  format.doi output
-  format.url output
+  % format.isbn output
+  % format.doi output
+  % format.url output
   new.block
   note output
   fin.entry
@@ -902,7 +902,7 @@ FUNCTION {manual}
   address output
   format.edition output
   format.date output
-  format.url output
+  % format.url output
   new.block
   note output
   fin.entry
@@ -919,7 +919,7 @@ FUNCTION {mastersthesis}
   school "school" output.check
   address output
   format.date "year" output.check
-  format.url output
+  % format.url output
   new.block
   note output
   fin.entry
@@ -935,7 +935,7 @@ FUNCTION {misc}
   howpublished output
   format.date output
   format.issn output
-  format.url output
+  % format.url output
   new.block
   note output
   fin.entry
@@ -953,7 +953,7 @@ FUNCTION {phdthesis}
   school "school" output.check
   address output
   format.date "year" output.check
-  format.url output
+  % format.url output
   new.block
   note output
   fin.entry
@@ -972,9 +972,9 @@ FUNCTION {proceedings}
   new.sentence
   organization output
   publisher output
-  format.isbn output
-  format.doi output
-  format.url output
+  % format.isbn output
+  % format.doi output
+  % format.url output
   new.block
   note output
   fin.entry
@@ -991,7 +991,7 @@ FUNCTION {techreport}
   institution "institution" output.check
   address output
   format.date "year" output.check
-  format.url output
+  % format.url output
   new.block
   note output
   fin.entry
@@ -1003,7 +1003,7 @@ FUNCTION {unpublished}
   author format.key output
   new.block
   format.title "title" output.check
-  format.url output
+  % format.url output
   new.block
   note "note" output.check
   format.date output
