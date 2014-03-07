@@ -7,14 +7,6 @@
 
 % Usual setup packages
 \usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
-%\usepackage{geometry} % to change the page dimensions
-%\usepackage{graphicx} % General page control package
-%\usepackage{titling} % For customizing titles
-%\usepackage[compact, raggedright]{titlesec} % For compact title
-
-% Harvard style bibliography
-%\usepackage[sorting=nyt,style=apa]{biblatex}
-%\usepackage{harvard}
 \usepackage[round]{natbib}
 \usepackage{url}
 
@@ -58,40 +50,12 @@
     urlcolor=black
 }
 
-% smaller tab space
-%\lstset{
-%	tabsize=2
-%}
-
 % Packages for drawing graphs, FSMs, etc.
 \usepackage{pgf}
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows,calc,fit,positioning,shapes.symbols,shapes.callouts,patterns,automata}
 
 
-
-%%% HEADERS & FOOTERS
-%\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
-%\pagestyle{fancy} % options: empty , plain , fancy
-%\renewcommand{\headrulewidth}{0pt} % customise the layout...
-%\lhead{}\chead{}\rhead{}
-%\lfoot{}\cfoot{\thepage}\rfoot{}
-
-%%% SECTION TITLE APPEARANCE
-%\usepackage{sectsty}
-%\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
-% (This matches ConTeXt defaults)
-
-%%% ToC (table of contents) APPEARANCE
-%\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
-%\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
-%\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
-%\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
-
-
-% Custom commands
-% - Spacing
-%\newcommand{\tab}{\hspace*{2em}}
 
 % - Math
 \newcommand{\abs}[1]{\lvert#1\rvert}
@@ -115,33 +79,10 @@
 
 \newcommand{\possessivecite}[1]{\citeauthor{#1}'s \citeyear{#1}}
 
-% remap \citep
-%\let\citep\citepp
-
-%\bibliography{PrelimReferences}
-
-% Squeeze whitespace
-%\setlength{\parskip}{0pt}
-%\setlength{\parsep}{0pt}
-%\setlength{\headsep}{0pt}
-%\setlength{\topskip}{0pt}
-%\setlength{\topmargin}{0pt}
-%\setlength{\topsep}{0pt}
-%\setlength{\partopsep}{0pt}
-%
-%\titlespacing{\section}{0pt}{*3}{*3}
-%\titlespacing{\subsection}{0pt}{*2}{*2}
-%\titlespacing{\subsubsection}{0pt}{*1}{*1}
-%
-%\renewcommand{\arraystretch}{1.2}
-%\setlength{\droptitle}{-2cm}
-
 \begin{document}
 \title{A Survey of Non-Spatial and Spatial Modeling Techniques for Swarm Robotics}
 \author{Anshul Kanakia and Nikolaus Correll}
 
-%\begin{document}
-%\maketitle
 \KER{1}{24}{00}{0}{2014}{S000000000000000}
 \begin{abstract}
 Abstract goes here\ldots
@@ -151,7 +92,6 @@ Abstract goes here\ldots
 \subfile{Terms}
 \subfile{Method}
 \subfile{NonSpatialModels}
-%\subfile{CollabModel}
 \subfile{SpatialModels}
 \subfile{Conclusion}
 
@@ -159,5 +99,4 @@ Abstract goes here\ldots
 % \nocite{*} % Show all Bib-entries
 \bibliographystyle{plainnatCustom}
 \bibliography{refworks}
-%\printbibliography
 \end{document}
