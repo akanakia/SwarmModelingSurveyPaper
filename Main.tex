@@ -3,18 +3,13 @@
 % section files to.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\documentclass[11pt, onecolumn, compsoc, letterpaper]{article}
-\documentclass{article}
+\documentclass{kerauth}
 
 % Usual setup packages
 \usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
-\usepackage{geometry} % to change the page dimensions
-\usepackage{graphicx} % General page control package
-%\usepackage{titling} % For customizing titles
-%\usepackage[compact, raggedright]{titlesec} % For compact title
-
-% Harvard style bibliography
-%\usepackage[sorting=nyt,style=apa]{biblatex}
-\usepackage{harvard}
+%\usepackage{geometry} % to change the page dimensions
+%\usepackage{graphicx} % General page control package
+\usepackage[round]{natbib}
 \usepackage{url}
 
 % Packages for verbatim text blocks
@@ -74,39 +69,35 @@
 \newcommand{\ceil}[1]{\lceil#1\rceil}
 
 % Nice Little macro for adding a comment box. Includes incrementing comment numbers.
-%\newcounter{comcount}
-%\setcounter{comcount}{0}
-%\newcommand{\mycomment}[1]
-%{
-%\refstepcounter{comcount}
-%\smallskip\noindent\fbox{\parbox{\linewidth}{\emph{Comment \arabic{comcount}} : \small{#1}}} 
-%}
+\newcounter{comcount}
+\setcounter{comcount}{0}
+\newcommand{\mycomment}[1]
+{
+\refstepcounter{comcount}
+\smallskip\noindent\fbox{\parbox{\linewidth}{\emph{Comment \arabic{comcount}} : \small{#1}}} 
+}
 
-%\bibliography{PrelimReferences}
+\newcommand{\possessivecite}[1]{\citeauthor{#1}'s \citeyear{#1}}
 
 \begin{document}
-\title{A Survey of Non-Spatial and Spatial Modeling Techniques and Applications for Robot Swarms}
+\title{A Survey of Non-Spatial and Spatial Modeling Techniques for Swarm Robotics}
 \author{Anshul Kanakia and Nikolaus Correll}
 
-%\begin{document}
-%\maketitle
-%\KER{1}{24}{00}{0}{2014}{S000000000000000}
+\KER{1}{24}{00}{0}{2014}{S000000000000000}
 \begin{abstract}
 Abstract goes here\ldots
 \end{abstract}
 
 
 \subfile{Introduction}
-%\subfile{Terms}
-%\subfile{Method}
-%\subfile{NonSpatialModels}
-%\subfile{CollabModel}
-%\subfile{SpatialModels}
-%\subfile{Conclusion}
+\subfile{Terms}
+\subfile{Method}
+\subfile{NonSpatialModels}
+\subfile{SpatialModels}
+\subfile{Conclusion}
 
 % Bibliography
 % \nocite{*} % Show all Bib-entries
-\bibliographystyle{agsm}
-\bibliography{PrelimReferences}
-%\printbibliography
+\bibliographystyle{plainnatCustom}
+\bibliography{refworks}
 \end{document}
