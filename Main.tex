@@ -2,14 +2,14 @@
 % This is the main file for defining packages, macros and linking other
 % section files to.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\documentclass[11pt, onecolumn, compsoc, letterpaper]{article}
-\documentclass{kerauth}
+\documentclass[11pt, onecolumn, compsoc, letterpaper]{article}
+%\documentclass{kerauth}
 
 % Usual setup packages
 \usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
-%\usepackage{geometry} % to change the page dimensions
-%\usepackage{graphicx} % General page control package
-\usepackage[round]{natbib}
+\usepackage{geometry} % to change the page dimensions
+\usepackage{graphicx} % General page control package
+%\usepackage[round]{natbib}
 \usepackage{url}
 
 % Packages for verbatim text blocks
@@ -77,13 +77,15 @@
 \smallskip\noindent\fbox{\parbox{\linewidth}{\emph{Comment \arabic{comcount}} : \small{#1}}} 
 }
 
-\newcommand{\possessivecite}[1]{\citeauthor{#1}'s \citeyear{#1}}
+%\newcommand{\possessivecite}[1]{\citeauthor{#1}'s \citeyear{#1}}
 
-\begin{document}
 \title{A Survey of Non-Spatial and Spatial Modeling Techniques for Swarm Robotics}
 \author{Anshul Kanakia and Nikolaus Correll}
 
-\KER{1}{24}{00}{0}{2014}{S000000000000000}
+\begin{document}
+\maketitle
+
+%\KER{1}{24}{00}{0}{2014}{S000000000000000}
 \begin{abstract}
 Abstract goes here\ldots
 \end{abstract}
@@ -97,7 +99,8 @@ Abstract goes here\ldots
 \subfile{Conclusion}
 
 % Bibliography
-% \nocite{*} % Show all Bib-entries
-\bibliographystyle{plainnatCustom}
+%\nocite{*} % Show all Bib-entries
+%\bibliographystyle{plainnatCustom}
+\bibliographystyle{plainCustom}
 \bibliography{refworks}
 \end{document}
