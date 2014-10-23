@@ -5,8 +5,6 @@
 
 This section describes a particular methodology for designing and modeling robot controllers that is widely used in the swarm robotics community. While this is by no means the only modeling method available for robot swarms---e.g., other (related) modeling and control methods are described in \cite{Bayazit2005,Berman2007,Billard1999,Sugawara2013}---it has the important property of being an iterative method that integrates multiple levels of abstraction of the multi-agent system. This opens up the opportunity for parameter discovery and optimization, which is covered in section~\ref{sec:opt}.
 
-%Some early work related to modeling swarm robot systems was done by Martinoli et al.\cite{Martinoli1995,Martinoli2004} outlining collective group behaviors and the associated system dynamics by studying two distinct swarming tasks. The first task involved the aggregation of sticks by teams of robots in a closed environment while the second experiment was a team-based, collaboration task where groups of two robots were used to pull long sticks out of the ground. The second experiment has been widely studied and extended upon by numerous researchers like Martinoli, Mondada, Ijspeert, Lerman, and Correll in the past decade and is well known in the community as the ``Stick Pulling Experiment''. We will use this experiment as a recurring example throughout this section to introduce new concepts, beginning with a general procedure for designing the robot controller. If the reader is not familiar with the stick pulling experiment, a brief description is available in section~\ref{sec:stickpull} and is recommended before continuing with this section.
-
 \subsection{Experiment Setup}
 The first step in the robot controller design methodology is to describe the swarming task being studied. The general strategy used by each individual agent in the swarm is defined and later translated into a viable microscopic model. A hypothesis for the observed, collective behavior of the swarm is supplied, which is later quantified into a mathematical macroscopic model.
 
@@ -14,26 +12,7 @@ Physical characteristics of the swarm system are generally described in the expe
  
 
 \subsection{Designing the Controller Construct}
-%With this experiment setup in mind we will now discuss designing the robot controller. 
 The first step in this process is to create a logic construct---a flowchart, state-machine or algorithm that describes the desired robot behavior for the given task.
-
-%The original robot controller for the stick pulling experiment was designed as a flowchart seen in Figure~\ref{fig:stickchart}. The rectangular boxes in the flowchart are states that the robot controller can be in while the rhomboid shapes signify decision processes within the controller. The result of each decision process is dependent on several factors, for example, the \emph{object detected?} decision depends on feedback from the robot's IR proximity sensors. The \emph{obstacle?} decision depends on the output produced by the sensory neural net of the agent (see Figure~\ref{fig:khepschem}). The \emph{obstacle?} decision happens when the robot has an object in front of it and must decide whether it is an obstacle such as another robot or wall, or a target such as a stick. As one can imagine, the output from the neural net is not always correct due to factors like the distance and angle of incidence between the detecting robot and the object in front of it, as well as sensor noise.
-%
-%\begin{figure}[!tp]
-%\centering\includegraphics[width=10cm]{assets/stickControl.png}
-%\centering\caption{Flowchart for an individual robot controller in the stick pulling experiment.}\label{fig:stickchart}
-%\end{figure}
-
-%\begin{figure}[!tp]
-%\centering\includegraphics[width=12.5cm]{assets/stickprobcontrol.png}
-%\centering\caption{\textbf{Top:} A visualization of the conversion function $\boldsymbol{\tau}:\mathbb{R}^2_{\geq0} \rightarrow \mathbb{R}_{\geq0}$, going from a 2D physical space to a 1D probability space. \textbf{Bottom:} Flowchart of a robot controller in the probabilistic model of the stick pulling experiment. $p_{robots} =$ probability of encountering teammates; $p_{walls} =$ probability of encountering walls; $p_{sticks} =$ probability of encountering one of the sticks; $p_{grip2} =$ probability to make a grip2} \label{fig:probstickchart}
-%\end{figure}
-
-%Given this stochastic nature of decision processes in the flowchart, it makes sense for us to assign them probabilities of traversal. We therefore convert a physical 2D arena space into a 1D probability space via a transformation function, $\boldsymbol{\tau}:\mathbb{R}^2_{\geq0} \rightarrow \mathbb{R}_{\geq0}$, (top of Figure~\ref{fig:probstickchart}). The probabilities, $p_{robots}$, $p_{walls}$, etc., seen in the flowchart are computed using simple geometric properties of the environment. For example, $p_{walls}$ is computed as the ratio between the area where a robot can sense the wall (the dark gray perimeter of the square seen in top Figure~\ref{fig:probstickchart}) and the area of the whole arena.
-
-%You may notice that in Figure~\ref{fig:probstickchart} there are still some deterministic decision processes, such as \emph{time out?}. The \emph{time out?} decision process is special as it deals with an internal state variable in the agent, namely, its timer value. Such deterministic decision processes make the mathematical system more complex because of the need to maintain the current state of each agent instead of the collective state of the whole system. As we will discuss later, there are ways to stochastically model these deterministic decision processes (thereby simplifying the mathematical model) without loss of generality and without affecting the solution of the system in equilibrium, if one exists. 
-
-%The use of a flowchart makes it straightforward to describe the robot controller but doesn't do a very good job of exposing the true stochastic nature of the system, nor does it allude to the possibility of a mathematical model for the system. And so, we exchange this simple construct for a more mathematically robust one---a finite state machine (FSM).
 
 When studying non-spatial models, the robot controller can be characterized by an FSM with a discrete number of states under urgent, time-step driven semantics, as seen in Figure~\ref{fig:allfsm}. The states in the FSM ($A, B, C$ \& $D$) represent physical states that the robot can be in, such as  \emph{searching}, \emph{waiting}, etc. and can be directly derived from the program code running on the robot. One can think of each state as being an \emph{action} that the robot is currently performing based on stimulus from the environment and other robots. These stimuli can cause a robot to transition from one state to another and are represented as \emph{conditionals} on the edges of the FSM, $c_i$. These conditionals are equivalent to the decision process blocks in the flowchart and can be derived from:
 \begin{enumerate}
@@ -175,8 +154,6 @@ We can modify Gillespie's original modeling approach for use with swarm systems-
 ``\emph{[Figure~\ref{fig:micromodel}] shows a general overview of the probabilistic model. The whole simulation consists in running several probabilistic processes in parallel, with one process per robot, while keeping track of the state of the environment. The environment can be seen as a shared memory area (or blackboard) to which all probabilistic processes have access. The state of the robots is defined by a program with exactly the same structure as that of the controllers of the real robots, but, instead of computing the detailed sensory information and trajectories of the robots, the change of states is determined by the throwing of dice (probabilistic blocks). This is an interesting feature of the method because any extension of the real robot controllers can be implemented easily in the probabilistic model and vice versa.}''
 \end{quote}
 
-%Micro-level simulations are generally not as computationally intensive as solving the rate equations for a macro-model and provide similar results which can, in turn, be used to verify the correctness of the more mathematically and computationally heavy macro-models. This is why micro-level simulations are both, a valuable tool and important step in the design and analysis of swarm systems.
-
 \subsection{Verification of System Properties Using Real Experiments and Physics-Based Simulation}
 An important step in any modeling process is validation by comparing model results to real experiment data. Given the relatively abstract approach we have seen so far for designing models of robot swarms, this step is made even more crucial. The micro and macro-models in swarm robotics have conventionally been designed using observed phenomena from other processes seen in biological and chemical systems and adapted to fit the swarming task being studied. Many swarm algorithms show emergent behavior where the observation of complex properties at the system level cannot be trivially inferred from studying the individual agent behavior. The generalizations and simplifications made in the robot controller design when developing the micro and macro-models can, and in many cases do, suppress the interesting emergent properties seen in real physical systems. 
 
@@ -195,10 +172,7 @@ To be able to accurately recreate a task on a swarm system without investing the
 \end{figure}
 \footnotetext{Image credit: \texttt{http://www.cyberbotics.com/overview}}
 
-Many robot simulators are currently available today as either standalone programs like Webots and Gazebo (see Figure~\ref{fig:gazebo}).% as well as plug-ins and toolkits for popular scientific and engineering software like SolidWorks (Assembly Toolbox), Matlab (Robotics toolbox), Mathematica (SystemModeler) etc. 
-Webots is a widely used simulator in swarm robotics due to its capability to simulate multiple agents and agent-agent/agent-environment interactions in real time. The Webots API also allows for cross-compilation of programs from the simulation environment, right on to real robots without the need for reprogramming and supports a wide range of commercially available robot platforms such as Kilobots, Khepera, Alice, etc. There are also in-house implementations of physics simulators for specific robot platforms, such as the Droplet simulator shown in Figure~\ref{fig:dropletsim}, that build up on physics engines such as Bullet, ODE or even Unreal. 
-
-%In almost all swarm robot literature, the results being discussed about a swarming algorithm are backed by simulation data and real experiment data to validate the correctness of the algorithm and to verify that it behaves as expected. While this may not sound like a formal verification technique, it is widely used in the robotics community and is generally accepted as a good indication that an algorithm works as described and is often supplied as added conformation along with a more robust mathematical verification of the model.
+Many robot simulators are currently available today as either standalone programs like Webots and Gazebo (see Figure~\ref{fig:gazebo}). Webots is a widely used simulator in swarm robotics due to its capability to simulate multiple agents and agent-agent/agent-environment interactions in real time. The Webots API also allows for cross-compilation of programs from the simulation environment, right on to real robots without the need for reprogramming and supports a wide range of commercially available robot platforms such as Kilobots, Khepera, Alice, etc. There are also in-house implementations of physics simulators for specific robot platforms, such as the Droplet simulator shown in Figure~\ref{fig:dropletsim}, that build up on physics engines such as Bullet and ODE.
 
 \subsection{Iterating the Design Loop}
 \begin{figure}[!ht]
@@ -208,32 +182,5 @@ Webots is a widely used simulator in swarm robotics due to its capability to sim
 
 We have now discussed all the of the steps needed to design a robot controller and its corresponding (non-spatial) models for a particular swarming task. Figure~\ref{fig:recipe} gives us a visual representation of the entire process including the modeling methods used at different levels of abstraction of the swarm system. 
 
-%Lower abstraction levels (right to left in the figure) inform higher abstraction levels by means of calibration and system identification. In turn, higher abstraction levels can be used for designing and optimizing (as we will see in the next section) lower level models and systems. The bottom row of the figure shows selected results (from left to right) for  comparison of rate equation prediction (green) with real robot experiments (blue), the distribution (histogram) for the same data based on stochastic simulation for coordination with (red) and without (blue) communication, the impact of varying amounts of wheel-slip in the Webots simulator (solid lines) and stochastic simulation (dashed lines), and the performance distribution of the real system that closely resembles that obtained from stochastic simulation.
-
 This design methodology is a closed loop feedback system. Setting up the required swarming task as a real physical experiment or physical simulation allows us to discover and measure the different free parameters in the system. We then use these variables in lower resolution models (micro-level) as well as in the development of mathematical models (macro-level) for our system. These more abstract models allow us to rapidly experiment with system parameters and optimize them. We can then use these optimized parameters back in the real physical experiments to improve the desired behavior of the system and repeat the cycle till the desired level of accuracy and satisfaction of  model behavior is achieved. Finally, we hope to deploy these swarm systems in the real world to tackle real problems using the novel yet algorithmically simple approach that swarm robotics lends us.
-
-\subsection{Optimization}\label{sec:opt}
-One of the major advantages of the methodology described in this section is the ability to identify and optimize important system parameters. We can re-write the PDM equations in~\eqref{eq:rateeqns} as,
-\begin{equation}
-S'(\theta,\mu,t) = \Gamma\left(\vec{S}, \theta, \mu, t\right)
-\end{equation}
-So the temporal evolution of a model is characterized by its state in the past, $\vec{S}(t)$, partially known system parameters ($\theta$), robot control parameters ($\mu$), and time. In other words, the probabilities in eq.\eqref{eq:rateeqns} and eq.\eqref{eq:master} need not be constant values but functions of $\theta$, $\mu$, and $t$.
-
-Two situations commonly arise when designing macro-level models for swarm systems. Firstly, there is the problem of identifying the important system parameters, $\theta$. As pointed out in\cite{Correll2008}, \emph{``In a real robotic system, not all of the model parameters can be known beforehand, either due to uncertainty of measurements or because the chosen model oversimplifies the system (e.g., ignoring friction or sensor noise).''} As such, these parameters are estimated from observations of real experiments and require solving the following optimization problem.
-\begin{equation}
-	\theta^* = \underset{\overline{\theta}}{\argmin}\left(S^*(\overline{\theta},\mu) - \hat{S}^*(\theta, \mu)\right)^2 \label{eq:thetaopt}
-\end{equation}
-$S^*(\overline{\theta},\mu)$ is the model prediction of the state vector at steady-state,\\ i.e.~$S^*(\overline{\theta},\mu) = \lim_{t \to \infty}S(\overline{\theta},\mu, t)$, and $\hat{S}^*(\theta, \mu)$ is the experimentally observed state vector at steady-state.
-
-The second situation involves finding optimal control parameters, $\mu$, for a known set of system parameters, $\theta$. The goal is to drive the system towards a desired steady-state distribution, $\tilde{S}^*$, by tuning the model's control parameters. The is accomplished by solving the following optimization problem.
-\begin{equation}
-	\mu^* = \underset{\overline{\mu}}{\argmin}\left(\tilde{S}^* - S^*(\theta, \overline{\mu})\right)^2 \label{eq:muopt}
-\end{equation}
-
-It is evident from eq.\eqref{eq:thetaopt} and eq.\eqref{eq:muopt} that these separate optimization problems are not independent. Starting with initial guesses $\mu(0)$ and $\theta(0)$ alongside simulation results from these guesses, we generate increasingly better values of $\theta$ and $\mu$ for our desired final state distribution $\tilde{S}^*$ using the following recurrence relations.
-\begin{align}\label{eq:paramrel}
-	\overline{\theta}(n + 1) = & \underset{\overline{\theta}}{\argmin}\sum\limits_{i=0}^{n}\left(S^*(\overline{\theta},\overline{\mu}(i)) - \hat{S}^*(\theta, \overline{\mu}(i), i)\right)^2\\
-	\overline{\mu}(n + 1) = & \underset{\overline{\mu}}{\argmin}\left(\tilde{S}^* - S^*(\overline{\theta}(n + 1), \mu)\right)^2
-\end{align}
-The index $n$ corresponds to the number of the experiment that led to an observation of the steady state $\hat{S}^*(\theta, \mu, n)$. Further discussion and applications of this parameter optimization approach are discussed in\cite{Correll2006a,Correll2008}.
 \end{document}
