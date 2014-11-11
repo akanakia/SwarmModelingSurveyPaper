@@ -1,0 +1,14 @@
+\documentclass[Main.tex]{subfiles}
+\begin{document}
+\section{From Spatial to Dynamics Models}
+The Langevin Equation:
+\begin{equation}
+	m \frac{d\dot{x}}{dt} = \mathcal{F} + F' - \alpha\dot{x}
+\end{equation}
+To evaluate a swarm system using the Langevin Equation we make the following assumptions about the system:
+\begin{enumerate}[1.]
+\item Robot motion is random, but does not necessarily have to be uniform.
+\item Each agent's actions are independent of the actions of other agents.
+\end{enumerate}
+The second assumption adds a number of constraints to the model, the most restrictive requiring absence of communication between agents. While this assumption is unreasonable for robot systems, we will discuss strategies for relaxing this requirement later in this section\cite{Reif1965}.
+\end{document}
